@@ -66,7 +66,10 @@ export default function RestaurantDetailScreen ({ navigation, route }) {
         {!item.availability &&
           <TextRegular textStyle={styles.availability }>Not available</TextRegular>
         }
-         <View style={styles.actionButtonsContainer}>
+
+        {item.visibleUntil != null && ((new Date(item.visibleUntil)) - (new Date().getTime())) / (1000 * 60 * 60 * 24) < 7 &&
+          <TextRegular textStyle={{ color: GlobalStyles.brandPrimaryTap, textAlign: 'right', width: '93.5%'}}>It will dissapear soon!</TextRegular> }
+        <View style={styles.actionButtonsContainer}>
           <Pressable
             onPress={() => navigation.navigate('EditProductScreen', { id: item.id })
             }

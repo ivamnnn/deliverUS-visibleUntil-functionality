@@ -39,7 +39,12 @@ export default function CreateProductScreen ({ navigation, route }) {
       .number()
       .positive()
       .integer()
-      .required('Product category is required')
+      .required('Product category is required'),
+    visibleUntil: yup
+      .date()
+      .nullable()
+      .default(null)
+      .required('Visible until...')
   })
 
   useEffect(() => {
@@ -136,6 +141,11 @@ export default function CreateProductScreen ({ navigation, route }) {
               />
               <ErrorMessage name={'productCategoryId'} render={msg => <TextError>{msg}</TextError> }/>
 
+              <InputItem
+                name='visibleUntil'
+                label='Visible until:'
+              />
+              
               <TextRegular>Is it available?</TextRegular>
               <Switch
                 trackColor={{ false: GlobalStyles.brandSecondary, true: GlobalStyles.brandPrimary }}
